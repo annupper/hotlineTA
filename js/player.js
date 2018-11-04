@@ -20,7 +20,9 @@ function Player(game) {
     this.y = this.game.canvas.height * 0.5;
   
     this.img = new Image();
-    this.img.src = '../images/flappy.png';
+    //this.img.src = '../images/flappy.png';
+
+    this.img.src = 'images/flappy.png';
     
     // número de imágenes diferentes
     this.img.frames = 1;
