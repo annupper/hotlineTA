@@ -12,7 +12,9 @@ function Player(game) {
 
       this.speedX = 15;
       this.speedY = 15;
-    
+
+      this.friction = 0.8;
+
       this.setListeners();
   
    /*initial position*/
@@ -48,7 +50,7 @@ function Player(game) {
       e.preventDefault();
       switch(e.keyCode) {
         case KEY_LEFT: 
-        if(this.x >= 0){
+        if(this.x >= 0 ){
           this.x -= this.speedX;
         }
           break; 
@@ -70,17 +72,6 @@ function Player(game) {
       }
     }.bind(this);
   };
-
-  Player.prototype.move = function() {
-  /*  if(this.x + this.w >= this.game.canvas.width || this.x - this.w < 0) {
-      this.speedX *= -1;
-    }
-
-    if(this.y + this.h >= this.game.canvas.height || this.y - this.h < 0) {
-      this.speedX *= -1;
-    }*/
-  }
-
 
 
 
