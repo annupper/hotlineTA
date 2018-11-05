@@ -4,7 +4,7 @@ function Background(game) {
     this.img = new Image();
     //this.img.src = '../images/b1.jpg';
 
-    this.img.src = 'images/b1.jpg';
+    this.img.src = 'images/b2.jpg';
     
 
   

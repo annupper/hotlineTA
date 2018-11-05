@@ -1,22 +1,22 @@
+const KEY_UP = 87;
+const KEY_DOWN = 83;
+const KEY_LEFT = 65;
+const KEY_RIGHT = 68;
+
 function Player(game) {
     this.game = game;
   
       // medidas de la imagen a representar en el canvas
-      this.w = 75;
-      this.h = 75;
-    
-      this.vy = 1;
-    
+      this.w = 40;
+      this.h = 40;
+
+      this.speedX = 15;
+      this.speedY = 15;
     
       this.setListeners();
   
-  
-    this.gravity = 0,4;
-  
-   
+   /*initial position*/
     this.x = this.game.canvas.width * 0.3;
-  
-    // guardar posición original (suelo)
     this.y = this.game.canvas.height * 0.5;
   
     this.img = new Image();
@@ -30,8 +30,6 @@ function Player(game) {
   
   }
   
-  var TOP_KEY = 38;
-  var SPACE = 32;
   
   Player.prototype.draw = function() {
     this.game.ctx.drawImage(
@@ -46,17 +44,43 @@ function Player(game) {
   };
   
   Player.prototype.setListeners = function() {
-    document.onkeydown = function(event) {
-      if (event.keyCode === TOP_KEY && this.y == this.y0) {
-        this.y -= 5;
-        this.vy -= 10;
-      } else if (event.keyCode == SPACE) {
-        this.shoot();
+    document.onkeydown = function(e) {
+      e.preventDefault();
+      switch(e.keyCode) {
+        case KEY_LEFT: 
+        if(this.x >= 0){
+          this.x -= this.speedX;
+        }
+          break; 
+        case KEY_UP: 
+        if(this.y >= 0) {
+          this.y -= this.speedY;
+        }
+          break; 
+        case KEY_RIGHT:
+        if(this.x <= this.game.canvas.width-this.w) {
+          this.x += this.speedX;
+        }
+          break; 
+        case KEY_DOWN: 
+          if(this.y <= this.game.canvas.height-this.h) {
+            this.y += this.speedY;
+          }
+          break; 
       }
     }.bind(this);
   };
-  
+
   Player.prototype.move = function() {
-    
-  
-  };
+  /*  if(this.x + this.w >= this.game.canvas.width || this.x - this.w < 0) {
+      this.speedX *= -1;
+    }
+
+    if(this.y + this.h >= this.game.canvas.height || this.y - this.h < 0) {
+      this.speedX *= -1;
+    }*/
+  }
+
+
+
+

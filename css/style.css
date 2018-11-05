@@ -63,7 +63,7 @@ body {
     height: 90vh;
     font-family: Pixel;
     color: #fff;
-	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, rgb(35, 213, 139));
+	background: linear-gradient(-45deg, #EE7752, rgb(165, 27, 80), rgb(19, 117, 153), rgb(10, 109, 68));
 	background-size: 400% 400%;
 	-webkit-animation: Gradient 4s ease infinite;
 	-moz-animation: Gradient 4s ease infinite;
@@ -119,14 +119,24 @@ h1 {
     font-size: 5rem;
     font-weight: bold;
     color: white;
+    margin-top: 100px;
 /*text-shadow: black 0px 0px 5px, black 0px 0px 10px, black 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;*/
 text-shadow: -5px 5px 0px #012e2e, -10px 10px 0px #018d8d, -15px 15px 0px #02cccc;
 }
 
+h1:hover {
+    text-shadow: -5px 5px 0px #490140, -10px 10px 0px #cd2de9, -15px 15px 0px #ff79ff;
+}
+
 h4 {
-font-size: 2rem;
+font-size: 1.3rem;
+margin-top: 40px;
 color: #FFFFFF;
 text-shadow: 0 0 5px black, 0 0 10px black, 0 0 15px black, 0 0 20px #59ffff, 0 0 30px #59ffff, 0 0 40px #59ffff, 0 0 55px #59ffff, 0 0 75px #02cccc;
+}
+
+h4:hover {
+    text-shadow: none;
 }
 
 .tas-gifs {
@@ -145,4 +155,8 @@ img:hover {
     width: 120px;
     height: 120px;
     cursor: pointer;
+}
+
+.tas-name {
+    /*text-align: center;*/
 }

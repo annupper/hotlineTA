@@ -11,6 +11,7 @@ function Game(canvasId) {
   Game.prototype.start = function() {
     this.interval = setInterval(function() {
      this.clear();
+     this.move();
      this.draw();
     }.bind(this), 1000 / this.fps);
   };
@@ -32,3 +33,7 @@ function Game(canvasId) {
             this.background.draw();
             this.player.draw();
           };
+
+  Game.prototype.move = function() {
+    this.player.move();
+  }
