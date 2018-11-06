@@ -23,7 +23,7 @@ Game.prototype.stop = function () {
 
 Game.prototype.reset = function () {
   this.world = new World(this);
-  this.world.createWorld()
+  this.world.createWorld();
   //this.background = new Background(this);
   this.player = new Player(this);
 };

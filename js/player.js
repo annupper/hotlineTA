@@ -50,24 +50,30 @@ function Player(game) {
       e.preventDefault();
       switch(e.keyCode) {
         case KEY_LEFT: 
-        if(this.x >= 0 ){
+          if(this.game.world.checkCollisions(this,0,-1)){
+            break;
+          }
           this.x -= this.speedX;
-        }
-          break; 
+        break; 
+
         case KEY_UP: 
-        if(this.y >= 0) {
-          this.y -= this.speedY;
+        //console.log(this.game.world.collision);
+        if(this.game.world.checkCollisions(this, -1, 0)){
+          break;
         }
+        this.y -= this.speedY;
           break; 
         case KEY_RIGHT:
-        if(this.x <= this.game.canvas.width-this.w) {
-          this.x += this.speedX;
+        if(this.game.world.checkCollisions(this, 0, 1)){
+          break;
         }
+        this.x += this.speedX;
           break; 
         case KEY_DOWN: 
-          if(this.y <= this.game.canvas.height-this.h) {
-            this.y += this.speedY;
-          }
+        if(this.game.world.checkCollisions(this, 1, 0)){
+          break;
+        }
+          this.y += this.speedY;
           break; 
       }
     }.bind(this);

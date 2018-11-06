@@ -11,7 +11,7 @@ function World(game) {
 
     this.tileWidth = 100;
     this.tileHeight = 100;
-
+    this.collision = false;
 }
 
 // fill the world with walls
@@ -29,11 +29,12 @@ World.prototype.createWorld = function () {
     // scatter some walls
     for (var x = 0; x < this.worldWidth; x++) {
         for (var y = 0; y < this.worldHeight; y++) {
+            
+            if (Math.random() > 0.97) {
+                this.world[x][y] = new Obstacle(this.game, this.spritesheet, x * this.tileWidth,
+                     y * this.tileHeight, this.tileWidth , this.tileHeight );
 
-            if (Math.random() > 0.75) {
-                this.world[x][y] = 1;
-                console.log(this.spritesheet);
-        
+
             }
         }
     }
@@ -45,14 +46,46 @@ World.prototype.createWorld = function () {
 World.prototype.draw = function() {
     for (var x = 0; x < this.worldWidth; x++) {
         for (var y = 0; y < this.worldHeight; y++) {
-
-            if (this.world[x][y] === 1) {
-                this.game.ctx.drawImage(this.spritesheet,
-                    x * this.tileWidth, y * this.tileHeight, this.tileWidth, this.tileHeight
-                   );
+            
+            if (this.world[x][y]) {
+    
+               this.world[x][y].draw();
         
             }
+          
         }
     }
   
+}
+
+World.prototype.checkCollisions = function(player,vertical,horizontal) {
+    if(player.x + horizontal * player.speedX < 0){
+        return true
+      }
+
+      if(player.y + vertical * player.speedY < 0){
+        return true
+      }
+
+      if(player.x + horizontal * player.speedX > this.game.canvas.width-player.w){
+        return true
+      }
+      
+      if(player.y + vertical * player.speedY > this.game.canvas.height-player.h){
+        return true
+      }
+
+
+      for (var x = 0; x < this.worldWidth; x++) {
+        for (var y = 0; y < this.worldHeight; y++) {
+            
+            if (this.world[x][y]) {
+               if (this.world[x][y].checkCollision(player, vertical, horizontal)) {
+                   return true;
+               }
+            }
+            
+        }
+    }
+
 }
