@@ -13,6 +13,18 @@ Game.prototype.start = function () {
   this.interval = setInterval(function () {
     this.clear();
     //this.move();
+    this.framesCounter++;
+
+        // controlamos que frameCounter no sea superior a 1000
+        if (this.framesCounter > 1000) {
+          this.framesCounter = 0;
+        }
+    
+        // controlamos la velocidad de generación de obstáculos
+        if (this.framesCounter % 50 === 0) {
+          //this.generateEnemy(); //generate enemy
+        }
+    
     this.draw();
   }.bind(this), 1000 / this.fps);
 };
@@ -22,9 +34,11 @@ Game.prototype.stop = function () {
 };
 
 Game.prototype.reset = function () {
+  this.framesCounter = 0;
+  this.background = new Background(this);
   this.world = new World(this);
   this.world.createWorld();
-  //this.background = new Background(this);
+  this.coin = new Coin(this);
   this.player = new Player(this);
 };
 
@@ -34,7 +48,8 @@ Game.prototype.clear = function () {
 
 Game.prototype.draw = function () {
   //this.background.draw();
- this.world.draw();
+  this.world.draw();
+  this.coin.draw();
   this.player.draw();
 };
 

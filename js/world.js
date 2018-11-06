@@ -30,17 +30,12 @@ World.prototype.createWorld = function () {
     for (var x = 0; x < this.worldWidth; x++) {
         for (var y = 0; y < this.worldHeight; y++) {
             
-            if (Math.random() > 0.97) {
+            if (Math.random() > 0.85) {
                 this.world[x][y] = new Obstacle(this.game, this.spritesheet, x * this.tileWidth,
                      y * this.tileHeight, this.tileWidth , this.tileHeight );
-
-
             }
         }
     }
-
-    //this.draw();
-
 };
 
 World.prototype.draw = function() {
@@ -83,9 +78,20 @@ World.prototype.checkCollisions = function(player,vertical,horizontal) {
                if (this.world[x][y].checkCollision(player, vertical, horizontal)) {
                    return true;
                }
+            }  
+        }
+    }
+};
+
+World.prototype.generateCoins = function() {
+
+    for (var x = 0; x < this.worldWidth; x++) {
+        for (var y = 0; y < this.worldHeight; y++) {
+            
+            if (this.world[x][y]) {
+                
             }
             
         }
     }
-
-}
+};
