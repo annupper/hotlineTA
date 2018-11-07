@@ -2,7 +2,7 @@ function Coin(game, x, y, w, h, type) {
     this.game = game;
 
     this.img = new Image();
-    this.img.src = "images/haha.jpg";
+    this.img.src = "images/disquette.png";
 
     this.x = x;
     this.y = y;
@@ -10,7 +10,6 @@ function Coin(game, x, y, w, h, type) {
     this.h = 40;
 
     this.type = type;
-    this.counterCoins = 0;
 }
 
 Coin.prototype.draw = function() {

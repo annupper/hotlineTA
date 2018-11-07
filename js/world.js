@@ -15,6 +15,7 @@ function World(game) {
 
     this.type = "obstacle";
     this.score = 0;
+    this.counterCoins = 10;
 
 }
 
@@ -32,10 +33,10 @@ World.prototype.createWorld = function () {
 
     // scatter some walls
     for (var x = 0; x < this.worldWidth; x++) {
-        for (var y = 0; y < this.worldHeight; y++) {
+        for (var y = 1; y < this.worldHeight; y++) {
             
             if (Math.random() > 0.85) {
-                this.world[x][y] = new Obstacle(this.game, this.spritesheet, x * this.tileWidth,
+               this.world[x][y] = new Obstacle(this.game, this.spritesheet, x * this.tileWidth,
                      y * this.tileHeight, this.tileWidth , this.tileHeight, "obstacle" );
             }
         }
@@ -44,7 +45,7 @@ World.prototype.createWorld = function () {
 
 World.prototype.draw = function() {
     for (var x = 0; x < this.worldWidth; x++) {
-        for (var y = 0; y < this.worldHeight; y++) {
+        for (var y = 1; y < this.worldHeight; y++) {
             
             if (this.world[x][y]) {
     
@@ -85,7 +86,7 @@ World.prototype.checkCollisions = function(player,vertical,horizontal) {
                 if(this.world[x][y].checkCollision(player, vertical, horizontal)) {
                     this.world[x][y] = 0;
                     this.score +=1;
-                    console.log(this.score);
+                    //console.log(this.score);
                 }
             }
         }
@@ -94,26 +95,34 @@ World.prototype.checkCollisions = function(player,vertical,horizontal) {
 
 World.prototype.generateCoins = function() {
 
-    for (var x = 0; x < this.worldWidth; x++) {
+   for (var x = 0; x < this.worldWidth; x++) {
         for (var y = 0; y < this.worldHeight; y++) {
             if (!this.world[x][y]) {
-                if (Math.random() > 0.85) {
-                    this.world[x][y] = new Coin(this.game, x * this.tileWidth,
-                        y * this.tileHeight, this.tileWidth , this.tileHeight, "coin");
-                    this.world[x][y].draw();
-                }
+              if (Math.random() > 0.85 && this.counterCoins > 0) {
+                        this.world[x][y] = new Coin(this.game, x * this.tileWidth,
+                            y * this.tileHeight, this.tileWidth , this.tileHeight, "coin");
+                        this.world[x][y].draw();
+                        console.log(this.counterCoins);
+                        this.counterCoins--;
+              } 
             }
             
         }
     }
+
+  /*  while(this.counterCoins >= 0) {
+        var x = Math.floor(Math.random()*5);
+        var y = Math.floor(Math.random()*5);
+console.log("hi");
+        if(!this.world[x][y]) {
+            this.world[x][y] = new Coin(this.game, x * this.tileWidth,
+                y * this.tileHeight, this.tileWidth , this.tileHeight, "coin");
+            this.world[x][y].draw();
+            this.counterCoins--;
+            console.log(x , y);
+        }
+
+    } */
 };
 
-World.prototype.takeCoins = function (player, vertical, horizontal) {
-    for (var x = 0; x < this.worldWidth; x++) {
-        for (var y = 0; y < this.worldHeight; y++) {
-       
-       
-        }
-    }
-}
 

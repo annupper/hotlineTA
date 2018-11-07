@@ -58,6 +58,7 @@ Player.prototype.setListeners = function () {
 
       case KEY_UP:
         //console.log(this.game.world.collision);
+        //frameIndex
         if (this.game.world.checkCollisions(this, -1, 0)) {
           break;
         }
