@@ -5,10 +5,10 @@ window.onload = function () {
   game.start();
 
   document.querySelector("#restartGame").onclick = function (){
-    game.clear();
+    game.stop();
     game.reset();
+    game.clear();
     game.start();
 }
+
 };
-
-

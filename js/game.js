@@ -64,6 +64,13 @@ Game.prototype.gameOver = function () {
   return true;
 };
 
+Game.prototype.drawWin = function () {
+  this.stop();
+  //console.log("stopped");
+  this.drawText("TA WINS", 450, 300, 80);
+  return true;
+};
+
 Game.prototype.drawText = function(text, x, y, px) {
   this.ctx.font = `${px}px Pixel`;
   this.ctx.fillStyle = "white";

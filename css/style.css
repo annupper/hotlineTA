@@ -160,3 +160,26 @@ img:hover {
 .tas-name {
     /*text-align: center;*/
 }
+
+#restartGame {
+    background-color: #4CAF50; /* Green */
+	border: none;
+	padding: 32px 16px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+	cursor: pointer;
+	font-family: Pixel;
+	border-radius: 8px;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
