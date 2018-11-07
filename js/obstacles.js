@@ -1,13 +1,13 @@
-function Obstacle (game, img, x, y, w, h) {
+function Obstacle (game, img, x, y, w, h, type) {
     this.game = game;
     this.obstacles = [];
-
 
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
     this.img = img;
+    this.type = type;
 }
 
 Obstacle.prototype.draw = function() {

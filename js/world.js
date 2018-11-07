@@ -12,6 +12,10 @@ function World(game) {
     this.tileWidth = 100;
     this.tileHeight = 100;
     this.collision = false;
+
+    this.type = "obstacle";
+    this.score = 0;
+
 }
 
 // fill the world with walls
@@ -32,7 +36,7 @@ World.prototype.createWorld = function () {
             
             if (Math.random() > 0.85) {
                 this.world[x][y] = new Obstacle(this.game, this.spritesheet, x * this.tileWidth,
-                     y * this.tileHeight, this.tileWidth , this.tileHeight );
+                     y * this.tileHeight, this.tileWidth , this.tileHeight, "obstacle" );
             }
         }
     }
@@ -72,13 +76,18 @@ World.prototype.checkCollisions = function(player,vertical,horizontal) {
 
 
       for (var x = 0; x < this.worldWidth; x++) {
-        for (var y = 0; y < this.worldHeight; y++) {
-            
-            if (this.world[x][y]) {
+        for (var y = 0; y < this.worldHeight; y++) { 
+            if (this.world[x][y].type === "obstacle") {
                if (this.world[x][y].checkCollision(player, vertical, horizontal)) {
                    return true;
                }
-            }  
+            }else if (this.world[x][y].type === "coin"){
+                if(this.world[x][y].checkCollision(player, vertical, horizontal)) {
+                    this.world[x][y] = 0;
+                    this.score +=1;
+                    console.log(this.score);
+                }
+            }
         }
     }
 };
@@ -87,11 +96,24 @@ World.prototype.generateCoins = function() {
 
     for (var x = 0; x < this.worldWidth; x++) {
         for (var y = 0; y < this.worldHeight; y++) {
-            
-            if (this.world[x][y]) {
-                
+            if (!this.world[x][y]) {
+                if (Math.random() > 0.85) {
+                    this.world[x][y] = new Coin(this.game, x * this.tileWidth,
+                        y * this.tileHeight, this.tileWidth , this.tileHeight, "coin");
+                    this.world[x][y].draw();
+                }
             }
             
         }
     }
 };
+
+World.prototype.takeCoins = function (player, vertical, horizontal) {
+    for (var x = 0; x < this.worldWidth; x++) {
+        for (var y = 0; y < this.worldHeight; y++) {
+       
+       
+        }
+    }
+}
+

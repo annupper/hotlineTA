@@ -3,6 +3,8 @@ function Game(canvasId) {
   this.ctx = this.canvas.getContext("2d");
   this.fps = 60;
 
+  this.sec = 700;
+
   this.reset();
 
 }
@@ -13,19 +15,12 @@ Game.prototype.start = function () {
   this.interval = setInterval(function () {
     this.clear();
     //this.move();
-    this.framesCounter++;
-
-        // controlamos que frameCounter no sea superior a 1000
-        if (this.framesCounter > 1000) {
-          this.framesCounter = 0;
-        }
-    
-        // controlamos la velocidad de generación de obstáculos
-        if (this.framesCounter % 50 === 0) {
-          //this.generateEnemy(); //generate enemy
-        }
-    
     this.draw();
+    this.sec--;
+    console.log(this.sec);
+    if(this.sec < -1) {
+      this.gameOver();
+    }
   }.bind(this), 1000 / this.fps);
 };
 
@@ -34,11 +29,10 @@ Game.prototype.stop = function () {
 };
 
 Game.prototype.reset = function () {
-  this.framesCounter = 0;
   this.background = new Background(this);
   this.world = new World(this);
   this.world.createWorld();
-  this.coin = new Coin(this);
+  this.world.generateCoins();
   this.player = new Player(this);
 };
 
@@ -49,10 +43,12 @@ Game.prototype.clear = function () {
 Game.prototype.draw = function () {
   //this.background.draw();
   this.world.draw();
-  this.coin.draw();
   this.player.draw();
 };
 
-Game.prototype.move = function () {
-
+Game.prototype.gameOver = function () {
+  this.stop();
+  alert(`game over your score is ${this.world.score}`);
 }
+
+
