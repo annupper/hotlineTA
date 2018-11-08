@@ -1,8 +1,7 @@
-function Coin(game, x, y, w, h, type) {
+function Coin(game, img, x, y, w, h, type) {
     this.game = game;
 
-    this.img = new Image();
-    this.img.src = "images/disquette.png";
+    this.img = img;
 
     this.x = x;
     this.y = y;

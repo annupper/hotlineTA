@@ -1,3 +1,4 @@
+
 function World(game) {
     this.game = game;
     this.world = [[]];
@@ -8,6 +9,9 @@ function World(game) {
 
     this.spritesheet = new Image();
     this.spritesheet.src = 'images/orig.gif';
+
+    this.coinImage = new Image();
+    this.coinImage.src = "images/disquette.png";
 
     this.tileWidth = 100;
     this.tileHeight = 100;
@@ -38,6 +42,9 @@ World.prototype.createWorld = function () {
    
     for (var y = 1; y < numberOfWallElements; y++) {
         var emptyObstaclePos = this.findEmptySpace("obstacle");
+        if(this.game.level===2) {
+            this.spritesheet.src = 'images/cactus.gif';
+        }
            this.world[emptyObstaclePos.x][emptyObstaclePos.y] = new Obstacle(this.game, this.spritesheet, emptyObstaclePos.x * this.tileWidth,
             emptyObstaclePos.y * this.tileHeight, this.tileWidth , this.tileHeight, "obstacle" );
         
@@ -93,6 +100,8 @@ World.prototype.checkCollisions = function(player,vertical,horizontal) {
                }
             }else if (this.world[x][y].type === "coin"){
                 if(this.world[x][y].checkCollision(player, vertical, horizontal)) {
+                    var artifact = new MySound("sound/artifact.mp3") 
+                    artifact.play();
                     this.world[x][y] = 0;
                     this.score +=1;
                     //console.log(this.score);
@@ -106,8 +115,11 @@ World.prototype.generateCoins = function() {
 
     while (this.counterCoins>0) {
         let coinPosition = this.findEmptySpace("coin");
+        if(this.game.level === 2) {
+            this.coinImage.src = "images/cddisc1.png";
+        }
         
-        this.world[coinPosition.x][coinPosition.y] = new Coin(this.game, coinPosition.x * this.tileWidth,
+        this.world[coinPosition.x][coinPosition.y] = new Coin(this.game, this.coinImage, coinPosition.x * this.tileWidth,
             coinPosition.y * this.tileHeight, this.tileWidth - this.counterCoins , this.tileHeight - this.counterCoins, "coin");
         
         this.counterCoins--;  

@@ -70,7 +70,7 @@ Game.prototype.draw = function () {
 Game.prototype.gameOver = function () {
   this.stop();
   //console.log("stopped");
-  this.drawText("GAME OVER", 450, 300, 80);
+  this.drawText("GAME OVER", 370, 300, 80);
   return true;
 };
 
