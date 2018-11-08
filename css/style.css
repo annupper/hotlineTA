@@ -139,6 +139,12 @@ h4:hover {
     text-shadow: none;
 }
 
+.phone {
+	margin-top: 100px;
+	margin-left: 200px;
+	margin-bottom: 50px;
+}
+
 .tas-gifs {
     display: flex;
     flex-direction: row;
@@ -151,7 +157,7 @@ h4:hover {
     transition: width 2s, height 4s;
 }
 
-img:hover {
+.imgHover:hover {
     width: 120px;
     height: 120px;
     cursor: pointer;
