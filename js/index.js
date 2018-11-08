@@ -10,5 +10,5 @@ window.onload = function () {
     game.clear();
     game.start();
 }
-
 };
+

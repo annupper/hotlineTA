@@ -18,10 +18,10 @@ Obstacle.prototype.draw = function() {
 
 Obstacle.prototype.checkCollision = function(player, vertical, horizontal) {
 
-        if(player.x + horizontal * player.speedX < this.x + this.w
-    && player.x + horizontal * player.speedX + player.w> this.x
-    && player.y + vertical   * player.speedY < this.y + this.h
-    && player.y + vertical   * player.speedY + player.h> this.y) {
+        if(player.dx + horizontal * player.speedX < this.x + this.w
+    && player.dx + horizontal * player.speedX + player.dw> this.x
+    && player.dy + vertical   * player.speedY < this.y + this.h
+    && player.dy + vertical   * player.speedY + player.dh> this.y) {
        return true;
    }
 }

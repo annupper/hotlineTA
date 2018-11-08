@@ -15,7 +15,7 @@ function World(game) {
 
     this.type = "obstacle";
     this.score = 0;
-    this.counterCoins = 10;
+    this.counterCoins = this.game.initialCoins;
 
 }
 
@@ -32,15 +32,25 @@ World.prototype.createWorld = function () {
     }
 
     // scatter some walls
-    for (var x = 0; x < this.worldWidth; x++) {
+    let worldAvailablePositions = this.worldWidth * this.worldHeight;
+    let numberOfWallElements =Math.floor(Math.random() * (worldAvailablePositions * (0.05*this.game.level))) + Math.floor(worldAvailablePositions * 0.1);
+    
+   
+    for (var y = 1; y < numberOfWallElements; y++) {
+        var emptyObstaclePos = this.findEmptySpace("obstacle");
+           this.world[emptyObstaclePos.x][emptyObstaclePos.y] = new Obstacle(this.game, this.spritesheet, emptyObstaclePos.x * this.tileWidth,
+            emptyObstaclePos.y * this.tileHeight, this.tileWidth , this.tileHeight, "obstacle" );
+        
+    }
+
+    /*for (var x = 0; x < this.worldWidth; x++) {
         for (var y = 1; y < this.worldHeight; y++) {
-            
             if (Math.random() > 0.85) {
                this.world[x][y] = new Obstacle(this.game, this.spritesheet, x * this.tileWidth,
                      y * this.tileHeight, this.tileWidth , this.tileHeight, "obstacle" );
             }
         }
-    }
+    }*/
 };
 
 World.prototype.draw = function() {
@@ -48,7 +58,6 @@ World.prototype.draw = function() {
         for (var y = 1; y < this.worldHeight; y++) {
             
             if (this.world[x][y]) {
-    
                this.world[x][y].draw();
         
             }
@@ -59,19 +68,19 @@ World.prototype.draw = function() {
 }
 
 World.prototype.checkCollisions = function(player,vertical,horizontal) {
-    if(player.x + horizontal * player.speedX < 0){
+    if(player.dx + horizontal * player.speedX < 0){
         return true
       }
 
-      if(player.y + vertical * player.speedY < 0){
+      if(player.dy + vertical * player.speedY < 0){
         return true
       }
 
-      if(player.x + horizontal * player.speedX > this.game.canvas.width-player.w){
+      if(player.dx + horizontal * player.speedX > this.game.canvas.width-player.dw){
         return true
       }
       
-      if(player.y + vertical * player.speedY > this.game.canvas.height-player.h){
+      if(player.dy + vertical * player.speedY > this.game.canvas.height-player.dh){
         return true
       }
 
@@ -95,34 +104,29 @@ World.prototype.checkCollisions = function(player,vertical,horizontal) {
 
 World.prototype.generateCoins = function() {
 
-   for (var x = 0; x < this.worldWidth; x++) {
-        for (var y = 0; y < this.worldHeight; y++) {
-            if (!this.world[x][y]) {
-              if (Math.random() > 0.85 && this.counterCoins > 0) {
-                        this.world[x][y] = new Coin(this.game, x * this.tileWidth,
-                            y * this.tileHeight, this.tileWidth , this.tileHeight, "coin");
-                        this.world[x][y].draw();
-                        console.log(this.counterCoins);
-                        this.counterCoins--;
-              } 
-            }
-            
-        }
+    while (this.counterCoins>0) {
+        let coinPosition = this.findEmptySpace("coin");
+        
+        this.world[coinPosition.x][coinPosition.y] = new Coin(this.game, coinPosition.x * this.tileWidth,
+            coinPosition.y * this.tileHeight, this.tileWidth - this.counterCoins , this.tileHeight - this.counterCoins, "coin");
+        
+        this.counterCoins--;  
     }
-
-  /*  while(this.counterCoins >= 0) {
-        var x = Math.floor(Math.random()*5);
-        var y = Math.floor(Math.random()*5);
-console.log("hi");
-        if(!this.world[x][y]) {
-            this.world[x][y] = new Coin(this.game, x * this.tileWidth,
-                y * this.tileHeight, this.tileWidth , this.tileHeight, "coin");
-            this.world[x][y].draw();
-            this.counterCoins--;
-            console.log(x , y);
-        }
-
-    } */
+    
 };
+
+World.prototype.findEmptySpace = function(type){
+    let emptyPosition = false;
+    let emptyPosX, emptyPosY = 0;
+    let minMargin = 0;
+
+
+    while (!emptyPosition){
+        emptyPosX = Math.floor(Math.random() * (this.worldWidth - 1)) + 1; // Random X pos from 0 to total world width
+        emptyPosY = Math.floor(Math.random() * (this.worldHeight - 2)) + 1; // Random Y pos from 0 to total world width
+        emptyPosition = this.world[emptyPosX][emptyPosY]===0; 
+    }
+    return {x: emptyPosX, y: emptyPosY};
+}
 
 
