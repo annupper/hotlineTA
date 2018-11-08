@@ -43,7 +43,7 @@ World.prototype.createWorld = function () {
     for (var y = 1; y < numberOfWallElements; y++) {
         var emptyObstaclePos = this.findEmptySpace("obstacle");
         if(this.game.level===2) {
-            this.spritesheet.src = 'images/cactus.gif';
+            this.spritesheet.src = 'images/car.png';
         }
            this.world[emptyObstaclePos.x][emptyObstaclePos.y] = new Obstacle(this.game, this.spritesheet, emptyObstaclePos.x * this.tileWidth,
             emptyObstaclePos.y * this.tileHeight, this.tileWidth , this.tileHeight, "obstacle" );
@@ -116,7 +116,7 @@ World.prototype.generateCoins = function() {
     while (this.counterCoins>0) {
         let coinPosition = this.findEmptySpace("coin");
         if(this.game.level === 2) {
-            this.coinImage.src = "images/cddisc1.png";
+            this.coinImage.src = "images/wep_uzi.png";
         }
         
         this.world[coinPosition.x][coinPosition.y] = new Coin(this.game, this.coinImage, coinPosition.x * this.tileWidth,
