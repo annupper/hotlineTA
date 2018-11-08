@@ -1,39 +1,30 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Hotline TA</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+	<title>Hotline TA</title>
+	<script type="text/javascript" src="js/background.js"></script>
+	<script type="text/javascript" src="js/coins.js"></script>
+	<script type="text/javascript" src="js/world.js"></script>
+	<script type="text/javascript" src="js/obstacles.js"></script>
+	<script type="text/javascript" src="js/player.js"></script>
+	<script type="text/javascript" src="js/game.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
 
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>
-    <div class="home-content">
-        <h1>Hotline TA</h1>
-        <h4>Choose your teacher assistant</h4>
-        <div class="tas-gifs">
-            <div class="ta teo">
-                    <img src="images/D2K7Mv8.gif" alt="teo" width="100px" height="100px">
-                    <h2 class="tas-name">Teo</h2>
-            </div>
-            <div class="ta juan">
-                    <img src="images/TonyFace.png" alt="juan" width="100px" height="100px">
-                    <h2 class="tas-name">Juan</h2>
-            </div>
-            <div class="ta diego">
-                    <img src="images/TonyFace.png" alt="juan" width="100px" height="100px">
-                    <h2 class="tas-name">Juan</h2>
-            </div>
-            <div class="ta giorgio">
-                    <img src="images/TonyFace.png" alt="juan" width="100px" height="100px">
-                    <h2 class="tas-name">Juan</h2>
-            </div>
-            <div class="ta gabriel">
-                    <img src="images/gab.png" alt="juan" width="100px" height="100px">
-                    <h2 class="tas-name">Gabriel</h2>
-            </div>
 
-        </div>
-    
-    </div>
-    <script type="text/javascript" src="js/home.js"></script>
+<body>
+	<div class="container">
+		<div id="startMessage">
+			<img src="images/D2K7Mv8.gif" alt="teo" width="200px" height="200px">
+			<div></div>
+			<p>Look at that! </p>
+
+		</div>
+		<canvas id="canvas" width="1100" height="700"></canvas>
+		<button id="restartGame">Restart Game</button>
+	</div>
 </body>
+
 </html>
