@@ -14,6 +14,8 @@ const downSprite = 0;
 const leftSprite = 32;
 const rightSprite = 64;
 
+var punch = null;
+
 function Player(game, playerPos) {
   this.game = game;
 
@@ -82,6 +84,8 @@ Player.prototype.setListeners = function () {
           this.sx+=this.sw;
         }
         if (this.game.world.checkCollisions(this, 0, -1)) {
+          var punch = new MySound("sound/punch.mp3") 
+          punch.play();
           break;
         }
         //Move character
@@ -101,6 +105,8 @@ Player.prototype.setListeners = function () {
           this.sx+=this.sw;
         }
         if (this.game.world.checkCollisions(this, -1, 0)) {
+          var punch = new MySound("sound/punch.mp3") 
+        punch.play();
           break;
         }
         //Move character
@@ -117,6 +123,8 @@ Player.prototype.setListeners = function () {
           this.sx+=this.sw;
         }
         if (this.game.world.checkCollisions(this, 0, 1)) {
+          var punch = new MySound("sound/punch.mp3") 
+          punch.play();
           break;
         }
         //Move character
@@ -131,6 +139,8 @@ Player.prototype.setListeners = function () {
           this.sx+=this.sw;
         }
         if (this.game.world.checkCollisions(this, 1, 0)) {
+          var punch = new MySound("sound/punch.mp3") 
+          punch.play();
           break;
         }
         
