@@ -5,6 +5,7 @@ window.onload = function () {
   b.style.display = "none";
 
   var a = document.querySelector("#startMessage");
+  var c = document.querySelector("#restartGame");
 
   var game = new Game("canvas");
 
@@ -17,6 +18,8 @@ window.onload = function () {
     game.clear();
     game.reset();
     game.start();
+
+    c.style.display = "none";
 }
 };
 

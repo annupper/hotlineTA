@@ -152,7 +152,7 @@ h4:hover {
 }
 
 .tas-gifs > div {
-    margin-top: 40px;
+    margin-top: 80px;
     margin-right: 40px;
     transition: width 2s, height 4s;
 }
@@ -167,7 +167,7 @@ h4:hover {
     /*text-align: center;*/
 }
 
-#restartGame {
+.restartGame {
     background-color:transparent; /* Green */
 	border: none;
 

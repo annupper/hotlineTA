@@ -1,5 +1,5 @@
 const obstacles = ['images/car.png','images/orig.gif','images/cactus.gif'];
-const coins = ['images/wep_uzi.png','images/disquette.png','images/flappy.png','images/cddisc1.png'];
+const coins = ['images/caramelo.png','images/disquette.png','images/logo-ironhack.png','images/wep_uzi.png'];
 
 function World(game) {
     this.game = game;
