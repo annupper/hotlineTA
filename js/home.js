@@ -1,32 +1,7 @@
-var character = "";
 
-document.querySelector(".teo").onclick = function () {
-  character = "Teo";
-  location.reload();
-  location.href = 'home.html'
-}
-
-document.querySelector(".juan").onclick = function () {
-  character = "Juan";
-  location.reload();
-  location.href = 'home.html'
-}
-
-document.querySelector(".diego").onclick = function () {
-  character = "Diego";
-  location.reload();
-  location.href = 'home.html'
-}
-
-document.querySelector(".giorgio").onclick = function () {
-  character = "Giorgio";
-  location.reload();
-  location.href = 'home.html'
-}
-
-document.querySelector(".gabriel").onclick = function () {
-  character = "Gabriel";
-  location.reload();
-  location.href = 'home.html'
-}
+document.querySelectorAll(".ta").forEach(element => {
+  var character = element.classList[1];
+  // Get character name from second class in tag
+  element.onclick = function(){ window.location.href = 'home.html?player=' + character; };
+});
 

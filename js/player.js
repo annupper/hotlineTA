@@ -16,15 +16,15 @@ const rightSprite = 64;
 
 var punch = null;
 
-function Player(game, playerPos) {
+function Player(game, playerPos, size) {
   this.game = game;
 
   // medidas de la imagen a representar en el canvas
   this.sw = 32;
   this.sh = 32;
 
-  this.dw = 50;
-  this.dh = 50;
+  this.dw = size;
+  this.dh = size;
 
   this.speedX = 15;
   this.speedY = 15;
@@ -35,16 +35,31 @@ function Player(game, playerPos) {
 
   this.setListeners();
 
+  this.chosenCharacter = window.location.href.split("?player=")[1];
+
+  listOfCharacters = {
+    teo: 4,
+    juan: 1,
+    diego: 3,
+    giorgio: 2,
+    gabriel: 0
+  }
+  if (this.chosenCharacter){
+    this.character = listOfCharacters[this.chosenCharacter];
+  }else{
+    this.character = 1;
+  }
+
   /*initial sprite pos*/
-  this.sx = 32;
-  this.sy = 65;
+  this.sx = (this.character * (this.sw * numberOfHorSprites));
+  this.sy = 32*2;
 
   /*initial position*/
   this.dx = playerPos.x * playerWidth;
   this.dy = playerPos.y * playerHeight;
-
+  console.log(this.sx + '-'+this.sy);
   this.img = new Image();
-  this.img.src = 'images/walking_chars.png';
+  this.img.src = 'images/walking_chars1.png';
 
   // número de imágenes diferentes
   this.img.frames = 1;
@@ -79,7 +94,7 @@ Player.prototype.setListeners = function () {
       this.sy = leftSprite;
       //Calculate next sprite position
         if (this.sx >= this.sw * (numberOfHorSprites - 1)){
-          this.sx = 0;
+          this.sx = (this.character * (this.sw * numberOfHorSprites));
         }else{
           this.sx+=this.sw;
         }
@@ -100,7 +115,7 @@ Player.prototype.setListeners = function () {
         this.sy = upSprite;
         //Calculate next sprite position
         if (this.sx >= this.sw * (numberOfHorSprites - 1)){
-          this.sx = 0;
+          this.sx = (this.character * (this.sw * numberOfHorSprites));
         }else{
           this.sx+=this.sw;
         }
@@ -118,7 +133,7 @@ Player.prototype.setListeners = function () {
       this.sy = rightSprite;
       //Calculate next sprite position
         if (this.sx >= this.sw * (numberOfHorSprites - 1)){
-          this.sx = 0;
+          this.sx = (this.character * (this.sw * numberOfHorSprites));
         }else{
           this.sx+=this.sw;
         }
@@ -134,7 +149,7 @@ Player.prototype.setListeners = function () {
       case DOWN_ARROW:
       this.sy = downSprite;
         if (this.sx >= this.sw * (numberOfHorSprites - 1)){
-          this.sx = 0;
+          this.sx = (this.character * (this.sw * numberOfHorSprites));
         }else{
           this.sx+=this.sw;
         }

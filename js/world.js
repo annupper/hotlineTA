@@ -1,3 +1,5 @@
+const obstacles = ['images/car.png','images/orig.gif','images/cactus.gif'];
+const coins = ['images/wep_uzi.png','images/disquette.png','images/flappy.png','images/cddisc1.png'];
 
 function World(game) {
     this.game = game;
@@ -41,10 +43,9 @@ World.prototype.createWorld = function () {
     
    
     for (var y = 1; y < numberOfWallElements; y++) {
+        this.spritesheet.src = obstacles[this.game.level%obstacles.length];
         var emptyObstaclePos = this.findEmptySpace("obstacle");
-        if(this.game.level===2) {
-            this.spritesheet.src = 'images/car.png';
-        }
+        
            this.world[emptyObstaclePos.x][emptyObstaclePos.y] = new Obstacle(this.game, this.spritesheet, emptyObstaclePos.x * this.tileWidth,
             emptyObstaclePos.y * this.tileHeight, this.tileWidth , this.tileHeight, "obstacle" );
         
@@ -114,10 +115,8 @@ World.prototype.checkCollisions = function(player,vertical,horizontal) {
 World.prototype.generateCoins = function() {
 
     while (this.counterCoins>0) {
+        this.coinImage.src = coins[this.game.level%coins.length];
         let coinPosition = this.findEmptySpace("coin");
-        if(this.game.level === 2) {
-            this.coinImage.src = "images/wep_uzi.png";
-        }
         
         this.world[coinPosition.x][coinPosition.y] = new Coin(this.game, this.coinImage, coinPosition.x * this.tileWidth,
             coinPosition.y * this.tileHeight, this.tileWidth - this.counterCoins , this.tileHeight - this.counterCoins, "coin");

@@ -5,6 +5,7 @@ function Game(canvasId) {
   this.initialTime = 35;
   this.level = 1;
   this.initialCoins = 10;
+  this.initialPlayerSize = 50;
   this.reset();
 
   this.scorePositionx = 50;
@@ -46,8 +47,12 @@ Game.prototype.reset = function () {
   this.initialCoins = 10;
   this.time = this.initialTime - this.level;
   this.world.generateCoins();
-  var playerPos = this.world.findEmptySpace();
-  this.player = new Player(this, playerPos);
+  let playerPos = this.world.findEmptySpace();
+  let playerSize = (this.level-1)*3 + this.initialPlayerSize;
+  if (playerSize > this.world.tileHeight) { 
+    playerSize = this.initialPlayerSize;
+  }
+  this.player = new Player(this, playerPos, playerSize);
 };
 
 Game.prototype.clear = function () {
